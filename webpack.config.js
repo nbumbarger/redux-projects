@@ -7,7 +7,12 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
+  debug: true,
+  devtool: 'source-map',
   module: {
+    preLoaders: [
+      { test: /\.js?$/, loader: 'eslint', exclude: /node_modules/ }
+    ],
     loaders: [{
       exclude: /node_modules/,
       loader: 'babel',
@@ -16,6 +21,10 @@ module.exports = {
       }
     }]
   },
+  eslint: {
+    failOnWarning: false,
+    failOnError: true
+  },
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
@@ -23,4 +32,4 @@ module.exports = {
     historyApiFallback: true,
     contentBase: './'
   }
-};
+}
